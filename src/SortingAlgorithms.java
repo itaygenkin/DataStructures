@@ -6,6 +6,7 @@ public class SortingAlgorithms {
         System.out.println(iMin);
         randomizedQuickSort(array);
         printArray(array);
+
     }
 
     public static void printArray (int[] array){
