@@ -1,8 +1,9 @@
 public class Heap {
-
+    // ---------------------- fields ----------------------
     private int[] array;
     private int size;
 
+    // ---------------------- constructors ----------------------
     public Heap (int[] array){
         this.size = array.length;
         int n = findFirst2Power(array.length);
@@ -13,6 +14,7 @@ public class Heap {
         buildMaxHeap();
     }
 
+    // ---------------------- Methods ----------------------
     private int findFirst2Power (int n){
         int ans = 4;
         while ( ans < n )
