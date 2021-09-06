@@ -4,21 +4,26 @@ public class Heap {
     private int size;
 
     public Heap (int[] array){
-        this.array = array;
-        this.size = array.length - 1;
+        this.size = array.length;
+        int n = findFirst2Power(array.length);
+        int[] heapArray = new int[n];
+        for (int i = 0; i < array.length; i++ )
+            heapArray[i] = array[i];
+        this.array = heapArray;
         buildMaxHeap();
     }
 
-    public int parent (int i){
-        return (i-1) / 2;
+    private int findFirst2Power (int n){
+        int ans = 4;
+        while ( ans < n )
+            ans *= 2;
+        return ans;
     }
 
-    public int left (int i){
-        return 2 * i + 1;
-    }
-
-    public int right (int i){
-        return 2 * i + 2;
+    private void buildMaxHeap(){
+        int s = (size / 2) - 1;
+        for (int i = s; i >= 0; i-- )
+            maxHeapify(i);
     }
 
     public void maxHeapify (int i){
@@ -33,6 +38,18 @@ public class Heap {
             swap(array, i, largest);
             maxHeapify(largest);
         }
+    }
+
+    public int parent (int i){
+        return (i-1) / 2;
+    }
+
+    public int left (int i){
+        return 2 * i + 1;
+    }
+
+    public int right (int i){
+        return 2 * i + 2;
     }
 
     private void swap (int[] array, int i, int j){
@@ -53,12 +70,6 @@ public class Heap {
         size = size - 1;
         maxHeapify(0);
         return max;
-    }
-
-    private void buildMaxHeap(){
-        int s = (size / 2) - 1;
-        for (int i = s; i >= 0; i-- )
-            maxHeapify(i);
     }
 
     public void increaseKey(int i, int key){
