@@ -30,17 +30,32 @@ public class DoubleLinkedList<T>{
         return last;
     }
 
+    public Link<T> get(int index){
+        if ( index > size || index <= 0 )
+            throw new ArrayIndexOutOfBoundsException("index out of bounds");
+        Link<T> output = first;
+        while ( index > 1 ){
+            output = output.getNext();
+            index -= 1;
+        }
+        return output;
+    }
+
     public void addFirst (T element){
         if ( element == null )
             throw new IllegalArgumentException("input argument is null");
-        first = new Link<T>(element, first, null);
+        Link<T> newFirst = new Link<T>(element, first, null);
+        first.setPrev(newFirst);
+        this.first = newFirst;
         size = size + 1;
     }
 
     public void addLast (T element){
         if ( element == null )
             throw new IllegalArgumentException("input argument is null");
-        last = new Link<T>(element, null, last);
+        Link<T> newLast = new Link<T>(element, null, last);
+        last.setNext(newLast);
+        this.last = newLast;
         size = size + 1;
     }
 
@@ -95,14 +110,12 @@ public class DoubleLinkedList<T>{
         return output + ">";
     }
 
-
-
-
-
-
-
-
-
-
+    public Object[] toArray(){
+        Object[] output = new Object[size];
+        int index = 0;
+        for (Link<T> l = first; l != null; l = l.getNext(), index ++)
+            output[index] = l.getData();
+        return output;
+    }
 
 }

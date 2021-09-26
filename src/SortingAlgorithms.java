@@ -1,11 +1,6 @@
 public class SortingAlgorithms {
 
     public static void main (String[] args){
-        int[] array = {2, 1, 9, 10, 12, -5, -3, 4, 7, 5, 6, 8};
-        int iMin = randomizedSelect(array, 0, array.length-1, 5);
-        System.out.println(iMin);
-        randomizedQuickSort(array);
-        printArray(array);
 
     }
 
@@ -163,7 +158,7 @@ public class SortingAlgorithms {
             return randomizedSelect(array, q + 1, r, i - k);
     }
 
-    public static int select (int[] array, int p, int r, int i){
+    public static int select (int[] array, int p, int r, int i){ //can't be run until choosePivot is done
         if ( p == r )
             return array[p];
         int j = choosePivot(array, p, r);
