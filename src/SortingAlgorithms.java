@@ -1,6 +1,9 @@
 public class SortingAlgorithms {
 
     public static void main (String[] args){
+        int[] array = {16, 17, 18, 20, 11, 10, 21, 13, 25, 19};
+        for (int i = 0; i < array.length; i++)
+            System.out.print(partition(array, 0, i) + " ");
 
     }
 
@@ -180,6 +183,13 @@ public class SortingAlgorithms {
             return r;
 
         return -1;
+    }
+
+    public static int[] heapSort(int[] array){
+        Heap h = new Heap(array); // O(n)
+        for (int i = array.length - 1; i >= 0; i--) // O(n)
+            array[i] = h.extractMax(); // O(log n)
+        return array;
     }
 
 }
