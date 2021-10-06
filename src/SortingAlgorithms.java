@@ -1,10 +1,16 @@
 public class SortingAlgorithms {
 
     public static void main (String[] args){
-        int[] array = {16, 17, 18, 20, 11, 10, 21, 13, 25, 19};
-        for (int i = 0; i < array.length; i++)
-            System.out.print(partition(array, 0, i) + " ");
-
+//        int[] array = {16, 17, 18, 20, 11, 10, 21, 13, 25, 19};
+//        for (int i = 0; i < array.length; i++)
+//            System.out.print(partition(array, 0, i) + " ");
+        int[] arr = {2, 2, 2, 1, 3, 2, 3, 1, 3, 2, 1, 2, 3, 1, 4};
+        System.out.println(randomizedSelect(arr, 0, arr.length-1, 8));
+        printArray(arr);
+        System.out.println(randomizedSelect(arr, 7, arr.length-1, 4));
+        printArray(arr);
+        System.out.println(randomizedSelect(arr, 12, arr.length-1, 2));
+        printArray(arr);
     }
 
     public static void printArray (int[] array){
@@ -134,7 +140,7 @@ public class SortingAlgorithms {
 
     public static int randomizedPartition (int[] array, int p, int r){
         double random = Math.random();
-        int i = (int) random * (p + 1 - r) + p;
+        int i = (int) (random * (r + 1 - p)) + p;
         swap(array, i, r);
         return partition(array, p, r);
     }
