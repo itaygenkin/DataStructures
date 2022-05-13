@@ -8,8 +8,7 @@ public class Heap {
         this.size = array.length;
         int n = findFirst2Power(array.length);
         int[] heapArray = new int[n];
-        for (int i = 0; i < array.length; i++ )
-            heapArray[i] = array[i];
+        System.arraycopy(array, 0, heapArray, 0, array.length); //
         this.array = heapArray;
         buildMaxHeap();
     }
@@ -76,7 +75,8 @@ public class Heap {
 
     public void increaseKey(int i, int key){
         if ( key < array[i] )
-            throw new IllegalArgumentException("new key is smaller than current key");
+            return;
+//            throw new IllegalArgumentException("new key is smaller than current key");
         array[i] = key;
         while ( i > 0 && array[parent(i)] < array[i] ){
             swap(array, i, parent(i));

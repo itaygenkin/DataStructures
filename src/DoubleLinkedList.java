@@ -1,10 +1,10 @@
 public class DoubleLinkedList<T>{
-    // ---------------------- fields ----------------------
+    // ---------------------- fields -----------------------
     private Link<T> first;
     private Link<T> last;
     private int size;
 
-    // ---------------------- constructors ----------------------
+    // ------------------- constructors --------------------
     public DoubleLinkedList(){
         this.first = null;
         this.last = null;
@@ -41,13 +41,13 @@ public class DoubleLinkedList<T>{
         return output;
     }
 
-    public void addFirst (T element){
-        if ( element == null )
-            throw new IllegalArgumentException("input argument is null");
+    public void addFirst (T element) {
+//        if ( element == null )
+//            throw new IllegalArgumentException("input argument is null");
         Link<T> newFirst = new Link<T>(element, first, null);
         first.setPrev(newFirst);
         this.first = newFirst;
-        size = size + 1;
+        size ++;
     }
 
     public void addLast (T element){
@@ -56,7 +56,7 @@ public class DoubleLinkedList<T>{
         Link<T> newLast = new Link<T>(element, null, last);
         last.setNext(newLast);
         this.last = newLast;
-        size = size + 1;
+        size ++;
     }
 
     public void removeFirst(){
@@ -76,7 +76,7 @@ public class DoubleLinkedList<T>{
         return output;
     }
 
-    public boolean removed (Object toRemove){
+    public boolean remove (Object toRemove){
         Link<T> current = first;
         boolean removed = false;
         while ( current != null && !removed ){
@@ -94,19 +94,19 @@ public class DoubleLinkedList<T>{
             else
                 current = current.getNext();
         }
-        size = size - 1;
+        size --;
         return removed;
     }
 
     public String toString(){
-        String output = "<";
+        StringBuilder output = new StringBuilder("<");
         Link<T> current = first;
         while ( current != null && current != last ){
-            output = output + current.toString() + ", ";
+            output.append(current.toString()).append(", ");
             current = current.getNext();
         }
         if ( current == last )
-            output = output + current.toString();
+            output.append(current.toString());
         return output + ">";
     }
 
@@ -118,4 +118,7 @@ public class DoubleLinkedList<T>{
         return output;
     }
 
+    public void print (){
+        System.out.println(this.toString());
+    }
 }

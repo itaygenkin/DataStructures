@@ -5,12 +5,10 @@ public class SortingAlgorithms {
 //        for (int i = 0; i < array.length; i++)
 //            System.out.print(partition(array, 0, i) + " ");
         int[] arr = {2, 2, 2, 1, 3, 2, 3, 1, 3, 2, 1, 2, 3, 1, 4};
-        System.out.println(randomizedSelect(arr, 0, arr.length-1, 8));
-        printArray(arr);
-        System.out.println(randomizedSelect(arr, 7, arr.length-1, 4));
-        printArray(arr);
-        System.out.println(randomizedSelect(arr, 12, arr.length-1, 2));
-        printArray(arr);
+        int[] a = {9, 8, 7, 6, 5, 4, 3, 2, 1, 0, -1, -2, -3, -4, -5};
+        randomizedQuickSort(a);
+        printArray(a);
+
     }
 
     public static void printArray (int[] array){
@@ -23,9 +21,8 @@ public class SortingAlgorithms {
     public static void bubbleSort (int[] array){ // O(n^2)
         for (int i = 0; i < array.length - 1; i++ ){
             for (int j = i + 1; j < array.length; j++ ){
-                if ( array[i] > array[j] ){
+                if ( array[i] > array[j] )
                     swap(array, i, j);
-                }
             }
         }
     }
@@ -90,8 +87,7 @@ public class SortingAlgorithms {
     public static int[] countingSort (int[] array, int k){
         int[] output = new int[array.length];
         int[] histogram = new int[k+1];
-        for (int i = 0; i < array.length; i++ )
-            histogram[array[i]] ++;
+        for (int value : array) histogram[value]++;
         for (int i = 1; i <= k; i++ )
             histogram[i] = histogram[i] + histogram[i-1];
         for (int j = array.length - 1; j >= 0; j-- ){
@@ -147,9 +143,9 @@ public class SortingAlgorithms {
 
     public static int minimum (int[] array){
         int min = array[0];
-        for (int i = 0; i < array.length; i++ ){
-            if ( array[i] < min )
-                min = array[i];
+        for (int j : array) {
+            if (j < min)
+                min = j;
         }
         return min;
     }

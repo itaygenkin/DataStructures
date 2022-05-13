@@ -1,10 +1,10 @@
 public class Link<T> {
-    // ---------------------- fields ----------------------
+    // ---------------------- fields -----------------------
     private T data;
     private Link<T> next;
     private Link<T> prev;
 
-    // ---------------------- constructors ----------------------
+    // -------------------- constructors ---------------------
     public Link (T data, Link<T> next, Link<T> prev){
         this.data = data;
         this.next = next;
