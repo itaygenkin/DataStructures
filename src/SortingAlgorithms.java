@@ -3,7 +3,7 @@ public class SortingAlgorithms {
     public static void main (String[] args){
 //        int[] array = {16, 17, 18, 20, 11, 10, 21, 13, 25, 19};
 //        for (int i = 0; i < array.length; i++)
-//            System.out.print(partition(array, 0, i) + " ");
+//            System.out.printList(partition(array, 0, i) + " ");
         int[] arr = {2, 2, 2, 1, 3, 2, 3, 1, 3, 2, 1, 2, 3, 1, 4};
         int[] a = {9, 8, 7, 6, 5, 4, 3, 2, 1, 0, -1, -2, -3, -4, -5};
         randomizedQuickSort(a);
@@ -63,16 +63,16 @@ public class SortingAlgorithms {
         int m = right - mid;
         int[] leftArray = new int[n+1];
         int[] rightArray = new int[m+1];
-        for (int i = 0; i < n; i++ )
+        for (int i = 0; i < n; i++)
             leftArray[i] = array[left + i];
-        for (int j = 0; j < m; j++ )
+        for (int j = 0; j < m; j++)
             rightArray[j] = array[mid + j + 1];
         leftArray[n] = Integer.MAX_VALUE;
         rightArray[m] = Integer.MAX_VALUE;
 
         int i = 0;
         int j = 0;
-        for (int k = left; k <= right; k++ ){
+        for (int k = left; k <= right; k++){
             if ( leftArray[i] <= rightArray[j] ){
                 array[k] = leftArray[i];
                 i ++;

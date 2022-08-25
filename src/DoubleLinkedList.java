@@ -1,20 +1,25 @@
+import java.util.Collection;
+import java.util.Iterator;
+
 public class DoubleLinkedList<T>{
     // ---------------------- fields -----------------------
-    private Link<T> first;
-    private Link<T> last;
-    private int size;
+    private Link<T> first = null;
+    private Link<T> last = null;
+    private int size = 0;
 
     // ------------------- constructors --------------------
-    public DoubleLinkedList(){
-        this.first = null;
-        this.last = null;
-        this.size = 0;
-    }
+    public DoubleLinkedList(){}
 
     public DoubleLinkedList(Link<T> link){
         this.first = link;
         this.last = link;
-        this.size = 1;
+        this.size += 1;
+    }
+
+    public DoubleLinkedList(Collection<T> c){
+        Iterator<T> itr = c.iterator();
+        while (itr.hasNext())
+            this.addLast(itr.next());
     }
 
     // ---------------------- Methods ----------------------
@@ -43,7 +48,7 @@ public class DoubleLinkedList<T>{
 
     public void addFirst (T element) {
 //        if ( element == null )
-//            throw new IllegalArgumentException("input argument is null");
+//            throw new IllegalArgumentException("Input argument is null");
         Link<T> newFirst = new Link<T>(element, first, null);
         first.setPrev(newFirst);
         this.first = newFirst;
@@ -51,8 +56,8 @@ public class DoubleLinkedList<T>{
     }
 
     public void addLast (T element){
-        if ( element == null )
-            throw new IllegalArgumentException("input argument is null");
+//        if ( element == null )
+//            throw new IllegalArgumentException("Input argument is null");
         Link<T> newLast = new Link<T>(element, null, last);
         last.setNext(newLast);
         this.last = newLast;
@@ -76,7 +81,7 @@ public class DoubleLinkedList<T>{
         return output;
     }
 
-    public boolean remove (Object toRemove){
+    public boolean remove (T toRemove){
         Link<T> current = first;
         boolean removed = false;
         while ( current != null && !removed ){
@@ -118,7 +123,7 @@ public class DoubleLinkedList<T>{
         return output;
     }
 
-    public void print (){
+    public void printList(){
         System.out.println(this.toString());
     }
 }
