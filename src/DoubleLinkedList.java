@@ -50,7 +50,10 @@ public class DoubleLinkedList<T>{
 //        if ( element == null )
 //            throw new IllegalArgumentException("Input argument is null");
         Link<T> newFirst = new Link<T>(element, first, null);
-        first.setPrev(newFirst);
+        if (size == 0)
+            this.last = newFirst;
+        else
+            first.setPrev(newFirst);
         this.first = newFirst;
         size ++;
     }
@@ -59,7 +62,10 @@ public class DoubleLinkedList<T>{
 //        if ( element == null )
 //            throw new IllegalArgumentException("Input argument is null");
         Link<T> newLast = new Link<T>(element, null, last);
-        last.setNext(newLast);
+        if (size == 0)
+            this.first = newLast;
+        else
+            last.setNext(newLast);
         this.last = newLast;
         size ++;
     }
@@ -105,13 +111,12 @@ public class DoubleLinkedList<T>{
 
     public String toString(){
         StringBuilder output = new StringBuilder("<");
-        Link<T> current = first;
-        while ( current != null && current != last ){
-            output.append(current.toString()).append(", ");
-            current = current.getNext();
+        Link<T> curr = first;
+        while (curr != null){
+            output.append(curr.toString()).append(", ");
+            curr = curr.getNext();
         }
-        if ( current == last )
-            output.append(current.toString());
+        output.delete(output.length()-2, output.length());
         return output + ">";
     }
 
