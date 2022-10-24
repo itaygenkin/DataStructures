@@ -46,7 +46,7 @@ public class DoubleLinkedList<T>{
         return output;
     }
 
-    public void addFirst (T element) {
+    public void addFirst(T element) {
 //        if ( element == null )
 //            throw new IllegalArgumentException("Input argument is null");
         Link<T> newFirst = new Link<T>(element, first, null);
@@ -58,7 +58,7 @@ public class DoubleLinkedList<T>{
         size ++;
     }
 
-    public void addLast (T element){
+    public void addLast(T element){
 //        if ( element == null )
 //            throw new IllegalArgumentException("Input argument is null");
         Link<T> newLast = new Link<T>(element, null, last);
@@ -87,10 +87,10 @@ public class DoubleLinkedList<T>{
         return output;
     }
 
-    public boolean remove (T toRemove){
+    public boolean remove(T toRemove){
         Link<T> current = first;
         boolean removed = false;
-        while ( current != null && !removed ){
+        while (current != null && !removed){
             if ( current.getData().equals(toRemove) ){
                 // if the first link should be removed
                 if ( current == first )
