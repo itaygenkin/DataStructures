@@ -1,16 +1,16 @@
 public class LinkList<T> {
 
-    //---------------Fields-------------------
+    //----------------Fields------------------
     private Link<T> first = null;
     private int size = 0;
 
-    //------------Constructor-----------------
+    //---------------Constructor---------------
     public LinkList (Link<T> link){
         this.first = link;
         size = 1;
     }
 
-    //-------------Methods--------------------
+    //----------------Methods------------------
     public int getSize(){
         return size;
     }
