@@ -80,13 +80,6 @@ public class DoubleLinkedList<T>{
         last.setNext(null);
     }
 
-    public boolean contains(Object element){
-        boolean output = false;
-        for (Link<T> curr = first; curr != null && !output; curr = curr.getNext())
-            output = element.equals(curr.getData());
-        return output;
-    }
-
     public boolean remove(T toRemove){
         Link<T> current = first;
         boolean removed = false;
@@ -107,6 +100,13 @@ public class DoubleLinkedList<T>{
         }
         size --;
         return removed;
+    }
+
+    public boolean contains(Object element){
+        boolean output = false;
+        for (Link<T> curr = first; curr != null && !output; curr = curr.getNext())
+            output = element.equals(curr.getData());
+        return output;
     }
 
     public String toString(){

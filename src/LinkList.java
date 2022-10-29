@@ -38,6 +38,54 @@ public class LinkList<T> {
         size ++;
     }
 
+    public void remove(int index){
+        if (index < 0 || index >= size)
+            return;
+        else if (index == 0){
+            removeFirst();
+            return;
+        }
+        Link<T> link = first;
+        for (int i = 0; i < index - 1; i++)
+            link = link.getNext();
+
+        link.setNext(link.getNext().getNext());
+    }
+
+    public void remove(Link<T> toRemove){
+        if (toRemove == null || size == 0) return;
+
+        if (toRemove == first){
+            removeFirst();
+        }
+
+        Link<T> prev = first;
+        Link<T> curr = prev.getNext();
+        while (curr != null && curr.equals(toRemove)){
+            prev = curr;
+            curr = curr.getNext();
+        }
+        if (curr == null) return;
+
+        prev.setNext(curr.getNext());
+        size --;
+    }
+
+    public void removeFirst(){
+        first = first.getNext();
+        size --;
+    }
+
+    public void removeLast(){
+        if (size == 0)
+            return;
+        else if (size == 1)
+            removeFirst();
+        else{
+            remove(size - 1);
+        }
+    }
+
     public String toString(){
         StringBuilder sb = new StringBuilder();
         sb.append("<");
@@ -80,5 +128,4 @@ public class LinkList<T> {
         return false;
     }
 
-    // TODO: add remove methods
 }

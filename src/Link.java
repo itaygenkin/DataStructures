@@ -1,8 +1,8 @@
 public class Link<T> {
     // ---------------------- fields -----------------------
     private T data;
-    private Link<T> next;
-    private Link<T> prev;
+    private Link<T> next = null;
+    private Link<T> prev = null;
 
     // -------------------- constructors ---------------------
     public Link (T data, Link<T> next, Link<T> prev){
