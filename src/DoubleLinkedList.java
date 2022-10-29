@@ -73,11 +73,13 @@ public class DoubleLinkedList<T>{
     public void removeFirst(){
         first = first.getNext();
         first.setPrev(null);
+        size --;
     }
 
     public void removeLast(){
         last = last.getPrev();
         last.setNext(null);
+        size --;
     }
 
     public boolean remove(T toRemove){
@@ -86,8 +88,10 @@ public class DoubleLinkedList<T>{
         while (current != null && !removed){
             if ( current.getData().equals(toRemove) ){
                 // if the first link should be removed
-                if ( current == first )
+                if ( current == first ) {
                     first = first.getNext();
+                    first.setPrev(null);
+                }
                 else{
                     Link<T> newNext = current.getNext();
                     current.getPrev().setNext(newNext);
@@ -102,10 +106,37 @@ public class DoubleLinkedList<T>{
         return removed;
     }
 
-    public boolean contains(Object element){
+    public boolean remove(int index){
+        //check input
+        if (index < 0 || index >= size )
+            return false;
+
+        if (index == 0){
+            removeFirst();
+            return true;
+        }
+
+        boolean removed = false;
+        Link<T> curr = first;
+
+        for (int i = 0; i < index; i++)
+            curr = curr.getNext();
+
+        Link<T> newNext = curr.getNext();
+        curr.getPrev().setNext(newNext);
+        newNext.setPrev(curr.getPrev());
+
+        size --;
+        return removed;
+    }
+
+    public boolean contains(T element){
         boolean output = false;
-        for (Link<T> curr = first; curr != null && !output; curr = curr.getNext())
+        Link<T> curr = first;
+        while (curr != null && !output){
             output = element.equals(curr.getData());
+            curr = curr.getNext();
+        }
         return output;
     }
 
